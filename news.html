@@ -69,8 +69,6 @@
         if (!res.ok) throw new Error('index.json not found');
         const items = await res.json();
 
-        // Показываем свежие новости сверху (порядок как в файле — переворачивать не будем,
-        // просто добавляйте новые записи в начало массива index.json)
         if (!items.length) {
           listEl.innerHTML = '<p style="color: var(--muted); font-size: 0.9rem;">Пока новостей нет. Загляни позже.</p>';
           return;
@@ -98,7 +96,6 @@
           wrap.appendChild(bodyEl);
           listEl.appendChild(wrap);
 
-          // Плавное появление, как остальные .fade-in блоки
           requestAnimationFrame(() => {
             new IntersectionObserver((entries, obs) => {
               entries.forEach(e => {
