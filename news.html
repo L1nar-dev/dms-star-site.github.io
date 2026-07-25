@@ -1,1 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Новости — DMS STAR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">DMS STAR</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="about.html">О сервере</a></li>
+      <li><a href="rules.html">Правила</a></li>
+      <li><a href="wiki.html">Вики</a></li>
+      <li><a href="news.html" class="active">Новости</a></li>
+      <li><a href="content.html">Контент</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <button class="nav-burger" id="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-mobile" id="mobileMenu">
+    <a href="index.html">Главная</a>
+    <a href="about.html">О сервере</a>
+    <a href="rules.html">Правила</a>
+    <a href="wiki.html">Вики</a>
+    <a href="news.html" class="active">Новости</a>
+    <a href="content.html">Контент</a>
+    <a href="faq.html">FAQ</a>
+  </div>
+
+  <div class="page-hero">
+    <div class="section-label">Обновления</div>
+    <h1>Новости сервера</h1>
+    <p class="lead">Что нового на DMS STAR: открытие сервера, изменения и ближайшие планы.</p>
+  </div>
+
+  <section>
+    <div class="container narrow">
+      <div id="newsList">
+        <p style="color: var(--muted); font-size: 0.85rem;">Загрузка новостей…</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-logo">DMS STAR</div>
+    <ul class="footer-links">
+      <li><a href="rules.html">Правила</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="wiki.html">Вики</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 DMS STAR. Автор дизайна: L1nar</div>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script>
+    async function loadNews() {
+      const listEl = document.getElementById('newsList');
+      try {
+        const res = await fetch('news-data/index.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('index.json not found');
+        const items = await res.json();
+
+        // Показываем свежие новости сверху (порядок как в файле — переворачивать не будем,
+        // просто добавляйте новые записи в начало массива index.json)
+        if (!items.length) {
+          listEl.innerHTML = '<p style="color: var(--muted); font-size: 0.9rem;">Пока новостей нет. Загляни позже.</p>';
+          return;
+        }
+
+        listEl.innerHTML = '';
+        for (const item of items) {
+          const wrap = document.createElement('div');
+          wrap.className = 'news-item fade-in';
+
+          const dateEl = document.createElement('div');
+          dateEl.className = 'news-date';
+          dateEl.textContent = item.date || '';
+
+          const titleEl = document.createElement('h3');
+          titleEl.textContent = item.title || 'Новость';
+
+          const bodyEl = document.createElement('div');
+          bodyEl.style.color = 'var(--muted)';
+          bodyEl.style.fontSize = '0.88rem';
+          bodyEl.style.lineHeight = '1.7';
+
+          wrap.appendChild(dateEl);
+          wrap.appendChild(titleEl);
+          wrap.appendChild(bodyEl);
+          listEl.appendChild(wrap);
+
+          // Плавное появление, как остальные .fade-in блоки
+          requestAnimationFrame(() => {
+            new IntersectionObserver((entries, obs) => {
+              entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+              });
+            }, { threshold: 0.1 }).observe(wrap);
+          });
+
+          if (item.file) {
+            try {
+              const mdRes = await fetch(item.file, { cache: 'no-store' });
+              if (mdRes.ok) {
+                const mdText = await mdRes.text();
+                bodyEl.innerHTML = marked.parse(mdText);
+              } else {
+                bodyEl.textContent = 'Не удалось загрузить текст новости.';
+              }
+            } catch (e) {
+              bodyEl.textContent = 'Не удалось загрузить текст новости.';
+            }
+          }
+        }
+      } catch (err) {
+        listEl.innerHTML = '<p style="color: var(--muted); font-size: 0.9rem;">Новости пока недоступны.</p>';
+        console.error(err);
+      }
+    }
+    loadNews();
+  </script>
+</body>
+</html>
 
