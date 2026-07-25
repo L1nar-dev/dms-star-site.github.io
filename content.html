@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Контент — DMS STAR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">DMS STAR</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="about.html">О сервере</a></li>
+      <li><a href="rules.html">Правила</a></li>
+      <li><a href="wiki.html">Вики</a></li>
+      <li><a href="news.html">Новости</a></li>
+      <li><a href="content.html" class="active">Контент</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <button class="nav-burger" id="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-mobile" id="mobileMenu">
+    <a href="index.html">Главная</a>
+    <a href="about.html">О сервере</a>
+    <a href="rules.html">Правила</a>
+    <a href="wiki.html">Вики</a>
+    <a href="news.html">Новости</a>
+    <a href="content.html" class="active">Контент</a>
+    <a href="faq.html">FAQ</a>
+  </div>
+
+  <div class="page-hero">
+    <div class="section-label">Медиа</div>
+    <h1>Контент сообщества</h1>
+    <p class="lead">Видео, стримы и скриншоты построек от игроков DMS STAR.</p>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="media-filter fade-in">
+        <button class="active" data-filter="all">Всё</button>
+        <button data-filter="video">Видео</button>
+        <button data-filter="screenshot">Скриншоты</button>
+      </div>
+
+      <div class="media-grid fade-in">
+
+        <div class="media-card" data-type="video">
+          <div class="thumb">
+            <iframe src="https://www.youtube.com/embed/oyXQ3m2Y9M4?rel=0" title="DMS STAR трейлер" allowfullscreen></iframe>
+          </div>
+          <div class="meta">
+            <h4>Трейлер сезона 4</h4>
+            <span>Видео</span>
+          </div>
+        </div>
+
+        <div class="media-card" data-type="screenshot">
+          <div class="thumb">
+            <img src="https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?auto=format&fit=crop&w=800&q=60" alt="Постройка на сервере" loading="lazy" />
+          </div>
+          <div class="meta">
+            <h4>Постройка игрока</h4>
+            <span>Скриншот</span>
+          </div>
+        </div>
+
+        <div class="media-card" data-type="screenshot">
+          <div class="thumb">
+            <img src="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=800&q=60" alt="Вид на мир сервера" loading="lazy" />
+          </div>
+          <div class="meta">
+            <h4>Панорама спавна</h4>
+            <span>Скриншот</span>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="fade-in" style="color: var(--muted); font-size: 0.85rem; margin-top: 40px; line-height: 1.7;">
+        Хочешь, чтобы твоё видео или постройка попали сюда? Свяжись с администрацией сервера.
+      </p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-logo">DMS STAR</div>
+    <ul class="footer-links">
+      <li><a href="rules.html">Правила</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="wiki.html">Вики</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 DMS STAR. Автор дизайна: L1nar</div>
+  </footer>
+
+  <script src="shared.js"></script>
+</body>
+</html>
+
