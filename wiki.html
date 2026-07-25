@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Вики — DMS STAR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">DMS STAR</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="about.html">О сервере</a></li>
+      <li><a href="rules.html">Правила</a></li>
+      <li><a href="wiki.html" class="active">Вики</a></li>
+      <li><a href="news.html">Новости</a></li>
+      <li><a href="content.html">Контент</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <button class="nav-burger" id="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-mobile" id="mobileMenu">
+    <a href="index.html">Главная</a>
+    <a href="about.html">О сервере</a>
+    <a href="rules.html">Правила</a>
+    <a href="wiki.html" class="active">Вики</a>
+    <a href="news.html">Новости</a>
+    <a href="content.html">Контент</a>
+    <a href="faq.html">FAQ</a>
+  </div>
+
+  <div class="page-hero">
+    <div class="section-label">Гайды</div>
+    <h1>Вики сервера</h1>
+    <p class="lead">Механики, команды и советы, которые пригодятся новичку в первые часы на сервере.</p>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="section-label fade-in">Первые шаги</div>
+      <div class="section-title fade-in">С чего начать</div>
+      <div class="card-grid fade-in" style="margin-bottom: 64px;">
+        <div class="info-card">
+          <h3>Подключение</h3>
+          <p>Укажи IP <strong style="color:#fff;">m1.nexuz.ru:25685</strong> в списке серверов клиента Minecraft и подключайся.</p>
+        </div>
+        <div class="info-card">
+          <h3>Спавн</h3>
+          <p>При первом входе ты попадаешь на общий спавн — оттуда можно отправиться исследовать мир.</p>
+        </div>
+        <div class="info-card">
+          <h3>Дом и телепорт</h3>
+          <p>Используй команды приватного дома, чтобы быстро возвращаться к своей базе (список команд — ниже).</p>
+        </div>
+        <div class="info-card">
+          <h3>Постройка базы</h3>
+          <p>Строй на достаточном расстоянии от других игроков и не забывай про правила территории.</p>
+        </div>
+      </div>
+
+      <div class="section-label fade-in">Команды</div>
+      <div class="section-title fade-in">Полезные команды</div>
+      <div class="rule-block fade-in" style="margin-bottom: 0;">
+        <ul>
+          <li><strong>/spawn</strong> — телепорт на общий спавн.</li>
+          <li><strong>/sethome</strong> — установить точку дома.</li>
+          <li><strong>/home</strong> — телепорт домой.</li>
+          <li><strong>/tpa &lt;ник&gt;</strong> — запрос телепорта к игроку.</li>
+          <li><strong>/msg &lt;ник&gt; &lt;текст&gt;</strong> — личное сообщение.</li>
+          <li><strong>/rules</strong> — краткая справка по правилам прямо в игре.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: var(--surface); border-top: 1px solid var(--border);">
+    <div class="container narrow fade-in">
+      <div class="section-label">Дополнение</div>
+      <div class="section-title">Раздел пополняется</div>
+      <p style="color: var(--muted); line-height: 1.8; font-size: 0.95rem;">
+        Вики будет дополняться новыми гайдами по мере развития сервера — механики, ивенты и советы по постройкам появятся здесь позже.
+      </p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-logo">DMS STAR</div>
+    <ul class="footer-links">
+      <li><a href="rules.html">Правила</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="about.html">О сервере</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 DMS STAR. Автор дизайна: L1nar</div>
+  </footer>
+
+  <script src="shared.js"></script>
+</body>
+</html>
+
