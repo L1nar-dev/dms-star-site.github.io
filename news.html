@@ -39,13 +39,26 @@
   <div class="page-hero">
     <div class="section-label">Обновления</div>
     <h1>Новости сервера</h1>
-    <p class="lead">Что нового на DMS STAR: ивенты, изменения и ближайшие планы.</p>
+    <p class="lead">Что нового на DMS STAR: открытие сервера, изменения и ближайшие планы.</p>
   </div>
 
   <section>
     <div class="container narrow">
-      <div id="newsList">
-        <p style="color: var(--muted); font-size: 0.85rem;">Загрузка новостей…</p>
+      <div class="news-tabs fade-in" role="tablist">
+        <button class="news-tab active" data-tab="news" role="tab" aria-selected="true">Новости</button>
+        <button class="news-tab" data-tab="devlog" role="tab" aria-selected="false">Девлог</button>
+      </div>
+
+      <div id="newsPanel" class="news-panel active">
+        <div id="newsList">
+          <p style="color: var(--muted); font-size: 0.85rem;">Загрузка новостей…</p>
+        </div>
+      </div>
+
+      <div id="devlogPanel" class="news-panel">
+        <div id="devlogList" class="timeline">
+          <p style="color: var(--muted); font-size: 0.85rem;">Загрузка девлога…</p>
+        </div>
       </div>
     </div>
   </section>
@@ -124,7 +137,89 @@
       }
     }
     loadNews();
+
+    document.querySelectorAll('.news-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.news-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+
+        const target = tab.dataset.tab;
+        document.getElementById('newsPanel').classList.toggle('active', target === 'news');
+        document.getElementById('devlogPanel').classList.toggle('active', target === 'devlog');
+
+        if (target === 'devlog' && !devlogLoaded) {
+          loadDevlog();
+        }
+      });
+    });
+
+    let devlogLoaded = false;
+    async function loadDevlog() {
+      devlogLoaded = true;
+      const listEl = document.getElementById('devlogList');
+      try {
+        const res = await fetch('news-data/devlog.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('devlog.json not found');
+        const items = await res.json();
+
+        if (!items.length) {
+          listEl.innerHTML = '<p style="color: var(--muted); font-size: 0.9rem;">Записей девлога пока нет.</p>';
+          return;
+        }
+
+        listEl.innerHTML = '';
+        items.forEach(entry => {
+          const row = document.createElement('div');
+          row.className = 'timeline-item fade-in';
+
+          const head = document.createElement('div');
+          head.className = 'timeline-head';
+          head.innerHTML = `
+            <span class="timeline-num">ТО #${entry.number ?? '?'}</span>
+            <span class="timeline-date">${entry.date ?? ''}</span>
+            <span class="timeline-duration">${entry.duration ?? ''}</span>
+          `;
+          row.appendChild(head);
+
+          const makeGroup = (label, arr, cls) => {
+            if (!arr || !arr.length) return null;
+            const g = document.createElement('div');
+            g.className = `timeline-group ${cls}`;
+            const h = document.createElement('div');
+            h.className = 'timeline-group-label';
+            h.textContent = label;
+            g.appendChild(h);
+            const ul = document.createElement('ul');
+            arr.forEach(txt => {
+              const li = document.createElement('li');
+              li.textContent = txt;
+              ul.appendChild(li);
+            });
+            g.appendChild(ul);
+            return g;
+          };
+
+          const added = makeGroup('Добавлено', entry.added, 'added');
+          const removed = makeGroup('Удалено', entry.removed, 'removed');
+          const fixed = makeGroup('Исправлено', entry.fixed, 'fixed');
+          [added, removed, fixed].forEach(g => { if (g) row.appendChild(g); });
+
+          listEl.appendChild(row);
+
+          requestAnimationFrame(() => {
+            new IntersectionObserver((entries2, obs) => {
+              entries2.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+              });
+            }, { threshold: 0.1 }).observe(row);
+          });
+        });
+      } catch (err) {
+        listEl.innerHTML = '<p style="color: var(--muted); font-size: 0.9rem;">Девлог пока недоступен.</p>';
+        console.error(err);
+      }
+    }
   </script>
 </body>
 </html>
-
