@@ -10,7 +10,7 @@
     "id": "primer-screenshot",
     "type": "screenshot",
     "title": "Снимайте что-то, чтобы я норм выкладывал XD",
-    "image": "content-data/media/splashmine.jpg",
+    "image": "../content-data/media/splashmine.jpg",
     "date": "Июль 2026"
   }
 ]
