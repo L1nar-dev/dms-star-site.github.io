@@ -5,21 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Новости — DMS STAR</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="../shared.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
 </head>
 <body>
 
   <nav class="site-nav">
-    <a href="index.html" class="nav-logo">DMS STAR</a>
+    <a href="../" class="nav-logo">DMS STAR</a>
     <ul class="nav-links">
-      <li><a href="index.html">Главная</a></li>
-      <li><a href="about.html">О сервере</a></li>
-      <li><a href="rules.html">Правила</a></li>
-      <li><a href="wiki.html">Вики</a></li>
-      <li><a href="news.html" class="active">Новости</a></li>
-      <li><a href="content.html">Контент</a></li>
-      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="../">Главная</a></li>
+      <li><a href="../about/">О сервере</a></li>
+      <li><a href="../rules/">Правила</a></li>
+      <li><a href="../wiki/">Вики</a></li>
+      <li><a href="../news/" class="active">Новости</a></li>
+      <li><a href="../content/">Контент</a></li>
+      <li><a href="../faq/">FAQ</a></li>
     </ul>
     <button class="nav-burger" id="burger" aria-label="Меню">
       <span></span><span></span><span></span>
@@ -27,13 +27,13 @@
   </nav>
 
   <div class="nav-mobile" id="mobileMenu">
-    <a href="index.html">Главная</a>
-    <a href="about.html">О сервере</a>
-    <a href="rules.html">Правила</a>
-    <a href="wiki.html">Вики</a>
-    <a href="news.html" class="active">Новости</a>
-    <a href="content.html">Контент</a>
-    <a href="faq.html">FAQ</a>
+    <a href="../">Главная</a>
+    <a href="../about/">О сервере</a>
+    <a href="../rules/">Правила</a>
+    <a href="../wiki/">Вики</a>
+    <a href="../news/" class="active">Новости</a>
+    <a href="../content/">Контент</a>
+    <a href="../faq/">FAQ</a>
   </div>
 
   <div class="page-hero">
@@ -66,22 +66,24 @@
   <footer class="site-footer">
     <div class="footer-logo">DMS STAR</div>
     <ul class="footer-links">
-      <li><a href="rules.html">Правила</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-      <li><a href="wiki.html">Вики</a></li>
+      <li><a href="../rules/">Правила</a></li>
+      <li><a href="../faq/">FAQ</a></li>
+      <li><a href="../wiki/">Вики</a></li>
     </ul>
     <div class="footer-copy">© 2026 DMS STAR. Автор дизайна: L1nar</div>
   </footer>
 
-  <script src="shared.js"></script>
+  <script src="../shared.js"></script>
   <script>
     async function loadNews() {
       const listEl = document.getElementById('newsList');
       try {
-        const res = await fetch('news-data/index.json', { cache: 'no-store' });
+        const res = await fetch('../news-data/index.json', { cache: 'no-store' });
         if (!res.ok) throw new Error('index.json not found');
         const items = await res.json();
 
+        // Показываем свежие новости сверху (порядок как в файле — переворачивать не будем,
+        // просто добавляйте новые записи в начало массива index.json)
         if (!items.length) {
           listEl.innerHTML = '<p style="color: var(--muted); font-size: 0.9rem;">Пока новостей нет. Загляни позже.</p>';
           return;
@@ -109,6 +111,7 @@
           wrap.appendChild(bodyEl);
           listEl.appendChild(wrap);
 
+          // Плавное появление, как остальные .fade-in блоки
           requestAnimationFrame(() => {
             new IntersectionObserver((entries, obs) => {
               entries.forEach(e => {
@@ -138,6 +141,7 @@
     }
     loadNews();
 
+    // Переключение табов Новости / Девлог
     document.querySelectorAll('.news-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.news-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
@@ -159,7 +163,7 @@
       devlogLoaded = true;
       const listEl = document.getElementById('devlogList');
       try {
-        const res = await fetch('news-data/devlog.json', { cache: 'no-store' });
+        const res = await fetch('../news-data/devlog.json', { cache: 'no-store' });
         if (!res.ok) throw new Error('devlog.json not found');
         const items = await res.json();
 
