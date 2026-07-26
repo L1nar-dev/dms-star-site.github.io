@@ -5,10 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DMS STAR — Minecraft-сервер</title>
   <meta name="description" content="DMS STAR — открытый Minecraft-сервер. IP: m1.nexuz.ru:25685" />
+
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+  <meta property="og:title" content="DMS STAR — Minecraft-сервер" />
+  <meta property="og:description" content="Открытый Minecraft-сервер с сюжетом. Присоединяйся к DMS STAR." />
+  <meta property="og:image" content="https://dms-star.ru/assets/og-banner.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dms-star.ru/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="shared.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <style>
+    /* ===== HERO (только для главной) ===== */
     #hero {
       position: relative;
       height: 100vh;
@@ -261,6 +275,7 @@
 
   <script src="shared.js"></script>
   <script>
+    /* ===== Интерактив звезды (только на главной) ===== */
     const icon = document.getElementById('heroIcon');
     const canvas = document.getElementById('particleCanvas');
     const ctx = canvas.getContext('2d');

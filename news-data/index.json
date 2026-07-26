@@ -1,10 +1,4 @@
 [
-    {
-    "id": "new-site",
-    "date": "Июль 2026",
-    "title": "Новый сайт сервера!",
-    "file": "../news-data/new-site.md"
-  },
   {
     "id": "otkrytie-servera",
     "date": "Июль 2026",

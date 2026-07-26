@@ -2,16 +2,15 @@
   {
     "id": "primer-video",
     "type": "video",
-    "title": "ВКНЖ 1 серия",
-    "youtube": "FfGw_R_2P7c",
-    "date": "Июнь 2026"
+    "title": "Пример видео",
+    "youtube": "oyXQ3m2Y9M4",
+    "date": "Июль 2026"
   },
   {
     "id": "primer-screenshot",
     "type": "screenshot",
-    "title": "Снимайте что-то, чтобы я норм выкладывал XD",
-    "image": "../content-data/media/splashmine.jpg",
+    "title": "Пример скриншота",
+    "image": "../content-data/media/example.jpg",
     "date": "Июль 2026"
   }
 ]
-
