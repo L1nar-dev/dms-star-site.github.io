@@ -2,15 +2,15 @@
   {
     "id": "primer-video",
     "type": "video",
-    "title": "Пример видео",
-    "youtube": "oyXQ3m2Y9M4",
+    "title": "Ларп закулисье лол",
+    "youtube": "S6_pO9xj4iM",
     "date": "Июль 2026"
   },
   {
     "id": "primer-screenshot",
     "type": "screenshot",
-    "title": "Пример скриншота",
-    "image": "../content-data/media/example.jpg",
+    "title": "Делайте чето чтобы я норм выкладывал XD",
+    "image": "../content-data/media/splashmine.jpg",
     "date": "Июль 2026"
   }
 ]
