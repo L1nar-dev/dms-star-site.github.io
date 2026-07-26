@@ -3,12 +3,12 @@
     "id": "new-site",
     "date": "Июль 2026",
     "title": "Новый сайт сервера!",
-    "file": "news-data/new-site.md"
+    "file": "../news-data/new-site.md"
   },
   {
     "id": "otkrytie-servera",
     "date": "Июль 2026",
     "title": "DMS STAR открыт для всех",
-    "file": "news-data/otkrytie-servera.md"
+    "file": "../news-data/otkrytie-servera.md"
   }
 ]
