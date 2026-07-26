@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Контент — DMS STAR</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="../shared.css" />
 </head>
 <body>
 
   <nav class="site-nav">
-    <a href="index.html" class="nav-logo">DMS STAR</a>
+    <a href="../" class="nav-logo">DMS STAR</a>
     <ul class="nav-links">
-      <li><a href="index.html">Главная</a></li>
-      <li><a href="about.html">О сервере</a></li>
-      <li><a href="rules.html">Правила</a></li>
-      <li><a href="wiki.html">Вики</a></li>
-      <li><a href="news.html">Новости</a></li>
-      <li><a href="content.html" class="active">Контент</a></li>
-      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="../">Главная</a></li>
+      <li><a href="../about/">О сервере</a></li>
+      <li><a href="../rules/">Правила</a></li>
+      <li><a href="../wiki/">Вики</a></li>
+      <li><a href="../news/">Новости</a></li>
+      <li><a href="../content/" class="active">Контент</a></li>
+      <li><a href="../faq/">FAQ</a></li>
     </ul>
     <button class="nav-burger" id="burger" aria-label="Меню">
       <span></span><span></span><span></span>
@@ -26,13 +26,13 @@
   </nav>
 
   <div class="nav-mobile" id="mobileMenu">
-    <a href="index.html">Главная</a>
-    <a href="about.html">О сервере</a>
-    <a href="rules.html">Правила</a>
-    <a href="wiki.html">Вики</a>
-    <a href="news.html">Новости</a>
-    <a href="content.html" class="active">Контент</a>
-    <a href="faq.html">FAQ</a>
+    <a href="../">Главная</a>
+    <a href="../about/">О сервере</a>
+    <a href="../rules/">Правила</a>
+    <a href="../wiki/">Вики</a>
+    <a href="../news/">Новости</a>
+    <a href="../content/" class="active">Контент</a>
+    <a href="../faq/">FAQ</a>
   </div>
 
   <div class="page-hero">
@@ -62,19 +62,19 @@
   <footer class="site-footer">
     <div class="footer-logo">DMS STAR</div>
     <ul class="footer-links">
-      <li><a href="rules.html">Правила</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-      <li><a href="wiki.html">Вики</a></li>
+      <li><a href="../rules/">Правила</a></li>
+      <li><a href="../faq/">FAQ</a></li>
+      <li><a href="../wiki/">Вики</a></li>
     </ul>
     <div class="footer-copy">© 2026 DMS STAR. Автор дизайна: L1nar</div>
   </footer>
 
-  <script src="shared.js"></script>
+  <script src="../shared.js"></script>
   <script>
     async function loadMedia() {
       const grid = document.getElementById('mediaGrid');
       try {
-        const res = await fetch('content-data/index.json', { cache: 'no-store' });
+        const res = await fetch('../content-data/index.json', { cache: 'no-store' });
         if (!res.ok) throw new Error('index.json not found');
         const items = await res.json();
 
@@ -120,6 +120,7 @@
           grid.appendChild(card);
         });
 
+        // Пере-навесить обработчики фильтра теперь, когда карточки существуют
         const filterBtns = document.querySelectorAll('.media-filter button');
         const mediaCards = document.querySelectorAll('.media-card');
         filterBtns.forEach(btn => {
